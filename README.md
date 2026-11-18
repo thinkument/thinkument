@@ -148,6 +148,23 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 ---
 
+## Canonical SDK API Capability Reference
+
+Every Thinkument client SDK exposes the exact same formal mathematical primitives across all languages:
+
+| Namespace / Domain | Method Call | Description & Operational Behavior | SLA / Target |
+| :--- | :--- | :--- | :--- |
+| **Genesis & Lifecycle** | `client.sessions.create(app_pack, ...)` | Mounts declarative widgets and explodes the initial program step. Returns unique `session_id` and live URL. | $<150\text{ms}$ |
+| **Interactive Dispatch** | `session.dispatch(signal, data, role)` | Dispatches data and/or signals targeting pending step widgets. Executes atomic trident commit. | $<50\text{ms}$ |
+| **Event Stream Observability**| `session.events(channel, since_seq)` | Polls or streams theta (semantic data) and epsilon (telemetry/performance) event logs. | $<15\text{ms}$ |
+| **Role-Modulated Access**| `session.as_role("author" \| "editor")` | Modulates data read permissions and widget dispatch authority according to actor role. | Zero-overhead |
+| **Deterministic Time-Travel**| `session.hydrate(checkpoint_seq)` | Rewinds or fast-forwards session execution to any arbitrary trident commit sequence. | $<50\text{ms}$ |
+| **App-Pack Modules** | `client.modules.publish(pack_path)` | Packages and registers declarative HAI cognitive modules into the local or cloud catalogue. | $<200\text{ms}$ |
+| **Telemetry & Metrics** | `client.analytics.get(session_id)` | Retrieves duration, step velocity, compute credits consumed, and latency breakdowns. | $<20\text{ms}$ |
+| **Health & Parity Check**| `client.healthz()` | Verifies connectivity to the local studio (:5052) or sovereign cloud and reports protocol version. | $<5\text{ms}$ |
+
+---
+
 ## Repository Structure
 
 ```text
