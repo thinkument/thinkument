@@ -1,0 +1,5 @@
+[data-chrome="standard"] { color: #20324a; background: #f4f7fb; padding: 1.5rem; font: 16px/1.5 system-ui; }
+[data-chrome="standard"] .chromed-widget { background: white; border: 1px solid #c4d1e1; border-radius: 12px; padding: 1.25rem; margin: 1rem 0; }
+.chromed-micro { display: flex; gap: .75rem; align-items: center; margin: .75rem 0; }
+.chromed-label { min-width: 8rem; }
+.chromed-control { font: inherit; padding: .5rem; border: 1px solid #a5b5c7; border-radius: 4px; }

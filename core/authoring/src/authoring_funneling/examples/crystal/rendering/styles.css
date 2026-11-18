@@ -1,0 +1,40 @@
+/* Crystal independent stylesheet: zero dependencies on Metal */
+[data-hai-widget-card].crystal-card, [data-hai-widget-card] {
+  padding: 1.25rem;
+  border: 1px solid #ccd8e0;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+}
+
+.crystal-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.15rem;
+  color: #1e293b;
+}
+
+.crystal-micros {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.crystal-micro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.crystal-micro label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.crystal-micro input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+}

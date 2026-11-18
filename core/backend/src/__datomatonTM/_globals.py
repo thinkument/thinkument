@@ -1,0 +1,58 @@
+from __future__ import annotations
+
+Q_STATUS_DONE = "done"
+Q_STATUS_BLOCKED = "blocked"
+Q_STATUS_REEXPLODE = "reexplode"
+
+Q_SIGNAL_FILL = "fill"
+Q_SIGNAL_MOUNT = "mount"
+Q_SIGNAL_CONTROLLER = "controller"
+
+Q_MESSAGE_LEVELS = {"success", "info", "warning", "error"}
+
+DEFAULT_MAX_REEXPLOSIONS_V1 = 0
+DEFAULT_MOUNT_EXPLODE_V1 = False
+DEFAULT_EXHAUSTED_MEANS_SATISFIED_V1 = True
+DEFAULT_MAX_BAGGAGE_V1 = 8
+DEFAULT_MAX_MESSAGES_V1 = 8
+
+KEY_DATUM_LIFECYCLE = "_datum_lifecycle_v1"
+
+DATUM_LIFECYCLE_STATUS_BLOCKED = "blocked"
+DATUM_LIFECYCLE_STATUS_DONE = "done"
+DATUM_LIFECYCLE_STATUS_REEXPLODED = "reexploded"
+DATUM_LIFECYCLE_STATUS_FORCED_DONE = "forced_done"
+
+DATUM_LIFECYCLE_RESERVED_RESULT_KEYS = frozenset(
+    {
+        "status",
+        "message",
+        "messages",
+        "core",
+        "fill",
+        "prefill",
+        "state",
+        "proc_notes",
+    }
+)
+
+__all__ = [
+    "Q_STATUS_DONE",
+    "Q_STATUS_BLOCKED",
+    "Q_STATUS_REEXPLODE",
+    "Q_SIGNAL_FILL",
+    "Q_SIGNAL_MOUNT",
+    "Q_SIGNAL_CONTROLLER",
+    "Q_MESSAGE_LEVELS",
+    "DEFAULT_MAX_REEXPLOSIONS_V1",
+    "DEFAULT_MOUNT_EXPLODE_V1",
+    "DEFAULT_EXHAUSTED_MEANS_SATISFIED_V1",
+    "DEFAULT_MAX_BAGGAGE_V1",
+    "DEFAULT_MAX_MESSAGES_V1",
+    "KEY_DATUM_LIFECYCLE",
+    "DATUM_LIFECYCLE_STATUS_BLOCKED",
+    "DATUM_LIFECYCLE_STATUS_DONE",
+    "DATUM_LIFECYCLE_STATUS_REEXPLODED",
+    "DATUM_LIFECYCLE_STATUS_FORCED_DONE",
+    "DATUM_LIFECYCLE_RESERVED_RESULT_KEYS",
+]

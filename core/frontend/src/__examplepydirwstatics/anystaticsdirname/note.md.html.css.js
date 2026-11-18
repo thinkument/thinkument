@@ -1,0 +1,1 @@
+// this dir needs to exist because the __examplepydirwstatics dir is declared w this dir as static root on its static_assets.py

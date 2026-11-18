@@ -1,0 +1,65 @@
+# think-app-authoring/pyproject.toml
+
+[tool.poetry]
+name = "think-app-authoring"
+version = "0.1.0"
+description = "Pure backend PSMC authoring primitives and public authoring funnels"
+authors = ["Thinkument <engineering@thinkument.com>"]
+readme = "README.md"
+license = "MIT"
+
+packages = [
+  { include = "authoring_pure_backend_no_funnel", from = "src" },
+  { include = "authoring_funneling", from = "src" },
+  { include = "authoring_funneling_templates", from = "src" },
+  { include = "authoring_funneling_preloaded_assets", from = "src" },
+  { include = "authoring_w_persistence_async", from = "src" },
+]
+
+include = [
+  { path = "src/authoring_funneling/**/json_widgets/*.json", format = ["sdist", "wheel"] },
+  { path = "src/authoring_funneling_preloaded_assets/**/*.json", format = ["sdist", "wheel"] },
+  { path = "src/authoring_funneling_templates/catalog.v1.json", format = ["sdist", "wheel"] },
+  { path = "src/authoring_funneling_templates/**/*.json", format = ["sdist", "wheel"] },
+  { path = "src/authoring_funneling/**/*.js", format = ["sdist", "wheel"] },
+  { path = "src/authoring_funneling/**/*.css", format = ["sdist", "wheel"] },
+  { path = "src/authoring_funneling/**/*.html", format = ["sdist", "wheel"] },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+jsonschema = "^4.25.1"
+Django = { version = ">=5.0,<5.3", optional = true }
+
+think-app = { path = "../think-app", develop = true }
+think-frontend = { path = "../think-frontend", develop = true }
+think-backend = { path = "../think-backend", develop = true }
+independent-tooling = { path = "../../../independent-tooling", develop = true }
+
+[tool.poetry.extras]
+django = ["Django"]
+
+[tool.poetry.plugins."thinkument.app_pack_collections.v1"]
+creativity = "ways_to_create.app_pack_publication_registrar.app_packs:app_pack_collection_v1"
+
+[tool.poetry.plugins."thinkument.static_roots.v1"]
+creativity = "ways_to_create.app_pack_publication_registrar.static_roots:shared_static_roots_v1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.4"
+Django = ">=5.0,<5.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-ra --strict-markers -p no:django"
+markers = [
+  "django_db: mark test to run with Django DB",
+]

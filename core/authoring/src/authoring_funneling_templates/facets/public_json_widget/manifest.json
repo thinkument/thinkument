@@ -1,0 +1,10 @@
+{
+  "kind": "json_widget_v1",
+  "name": "example.public_review",
+  "declaration": {"outputs": {"result": {"accepted": "bool"}}},
+  "signals": {
+    "mount": {"outputs": {"result": {"accepted": false}}, "reexplode": {"title": "Review", "micros": [{"name": "decision", "type": "text", "required": true}]}},
+    "fill": {"outputs": {"result": {"accepted": true}}, "done": true},
+    "reset": {"outputs": {"result": {"accepted": false}}, "reexplode": {"title": "Review", "micros": [{"name": "decision", "type": "text", "required": true}]}}
+  }
+}

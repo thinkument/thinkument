@@ -1,0 +1,89 @@
+{
+  "kind": "json_widget_v1",
+  "name": "metal.json_ideator",
+  "declaration": {
+    "outputs": {
+      "result": {
+        "text": "str"
+      }
+    },
+    "args": {
+      "hai_renderer": {
+        "type": "str",
+        "default": "metal.json_ideator"
+      }
+    }
+  },
+  "signals": {
+    "mount": {
+      "outputs": {
+        "result": {
+          "text": "Initial idea"
+        }
+      },
+      "reexplode": {
+        "title": "Idea",
+        "micros": [
+          {
+            "name": "answer",
+            "type": "text",
+            "required": true
+          }
+        ]
+      }
+    },
+    "fill": {
+      "done": true,
+      "outputs": {
+        "result": {
+          "text": "$fills.answer"
+        }
+      }
+    },
+    "generate": {
+      "steps": [
+        {
+          "id": "ideas",
+          "parallel": [
+            {
+              "id": "creative",
+              "fn": "vendor.llm.chat_completion",
+              "args": {
+                "prompt": "Offer one practical idea",
+                "model": null,
+                "temperature": null
+              }
+            },
+            {
+              "id": "practical",
+              "fn": "vendor.llm.chat_completion",
+              "args": {
+                "prompt": "Offer one practical idea",
+                "model": null,
+                "temperature": null
+              }
+            }
+          ]
+        }
+      ],
+      "outputs": {
+        "result": {
+          "text": "$ideas.creative.text"
+        }
+      },
+      "reexplode": {
+        "title": "Review ideas",
+        "micros": [
+          {
+            "name": "answer",
+            "type": "text",
+            "required": true
+          }
+        ],
+        "pre_computed_fills": {
+          "answer": "$ideas.creative.text"
+        }
+      }
+    }
+  }
+}

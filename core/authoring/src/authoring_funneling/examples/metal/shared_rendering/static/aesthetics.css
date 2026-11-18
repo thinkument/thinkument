@@ -1,0 +1,11 @@
+:where([data-paquete-scope]) [data-paquete-layout="vertical"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--paquete-placement-gap, .75rem);
+}
+:where([data-paquete-scope]) [data-paquete-layout="horizontal"] {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--paquete-placement-gap, .75rem);
+}

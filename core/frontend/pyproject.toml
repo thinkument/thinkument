@@ -1,0 +1,30 @@
+# think-frontend/pyproject.toml
+[tool.poetry]
+name        = "think-frontend"
+version     = "0.1.0"
+description = "Reusable Thinkument ioops and callbacks for AI interaction scenarios"
+authors     = ["Your Name <you@example.com>"]
+readme      = "README.md"
+license     = "MIT"
+# these are locak pkgs namespaced independently
+packages = [
+  { include = "__staticfiles_mgmt", from = "src" },
+  { include = "__examplepydirwstatics", from = "src" },
+  { include = "live_vial", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python          = "^3.10"
+flask = "^3.1.0"
+
+
+# Local packages
+think-backend = { path = "../think-backend", develop = true }
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.4"
+
+[build-system]
+requires      = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

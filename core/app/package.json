@@ -1,0 +1,17 @@
+{
+  "name": "think-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/ways_to_create/app_pack_mould/js/hai/app_packs.js"
+  },
+  "scripts": {
+    "test": "node --test tests-js/*.test.js",
+    "test:js": "node --test tests-js/*.test.js",
+    "check:js": "find src tests-js -name '*.js' -print0 | xargs -0 -n1 node --check"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

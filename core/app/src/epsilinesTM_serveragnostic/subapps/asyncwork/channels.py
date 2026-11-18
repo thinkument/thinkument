@@ -1,0 +1,67 @@
+from __future__ import annotations
+
+"""Constants, channel names, and schemas for the `asyncwork` subapp."""
+
+ASYNCWORK_APP = "asyncwork"
+
+ASYNCWORK_ANNOUNCE_CHANNEL = "asyncwork.announce"
+ASYNCWORK_PROGRESS_CHANNEL = "asyncwork.progress"
+ASYNCWORK_DONE_CHANNEL = "asyncwork.done"
+
+ASYNCWORK_ANNOUNCE_SCHEMA_V1 = "thinkument.asyncwork.announce.v1"
+ASYNCWORK_PROGRESS_SCHEMA_V1 = "thinkument.asyncwork.progress.v1"
+ASYNCWORK_DONE_SCHEMA_V1 = "thinkument.asyncwork.done.v1"
+
+ASYNCWORK_ANNOUNCE_EVENT = "announce"
+ASYNCWORK_PROGRESS_EVENT = "progress"
+ASYNCWORK_DONE_EVENT = "done"
+
+# Terminal outcomes
+OUTCOME_SUCCESS = "success"
+OUTCOME_ERROR = "error"
+OUTCOME_TIMEOUT = "timeout"
+ALLOWED_OUTCOMES = frozenset({OUTCOME_SUCCESS, OUTCOME_ERROR, OUTCOME_TIMEOUT})
+ASYNCWORK_OUTCOMES = ALLOWED_OUTCOMES
+
+# Intermediate progress statuses
+STATUS_RUNNING = "running"
+STATUS_IN_PROGRESS = "in_progress"
+STATUS_WAITING = "waiting"
+STATUS_CHECKPOINT = "checkpoint"
+STATUS_WARNING = "warning"
+STATUS_DONE = "done"
+ASYNCWORK_PROGRESS_STATUSES = frozenset(
+    {
+        STATUS_RUNNING,
+        STATUS_IN_PROGRESS,
+        STATUS_WAITING,
+        STATUS_CHECKPOINT,
+        STATUS_WARNING,
+        STATUS_DONE,
+    }
+)
+
+__all__ = [
+    "ALLOWED_OUTCOMES",
+    "ASYNCWORK_ANNOUNCE_CHANNEL",
+    "ASYNCWORK_ANNOUNCE_EVENT",
+    "ASYNCWORK_ANNOUNCE_SCHEMA_V1",
+    "ASYNCWORK_APP",
+    "ASYNCWORK_DONE_CHANNEL",
+    "ASYNCWORK_DONE_EVENT",
+    "ASYNCWORK_DONE_SCHEMA_V1",
+    "ASYNCWORK_OUTCOMES",
+    "ASYNCWORK_PROGRESS_CHANNEL",
+    "ASYNCWORK_PROGRESS_EVENT",
+    "ASYNCWORK_PROGRESS_SCHEMA_V1",
+    "ASYNCWORK_PROGRESS_STATUSES",
+    "OUTCOME_ERROR",
+    "OUTCOME_SUCCESS",
+    "OUTCOME_TIMEOUT",
+    "STATUS_CHECKPOINT",
+    "STATUS_DONE",
+    "STATUS_IN_PROGRESS",
+    "STATUS_RUNNING",
+    "STATUS_WAITING",
+    "STATUS_WARNING",
+]

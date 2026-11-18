@@ -1,0 +1,9 @@
+.hai-example-note {
+  border-left: 0.35rem solid currentColor;
+  padding-left: 1rem;
+}
+
+.hai-example-note textarea {
+  min-height: 7rem;
+  width: min(100%, 48rem);
+}

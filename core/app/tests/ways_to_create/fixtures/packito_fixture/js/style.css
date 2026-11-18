@@ -1,0 +1,80 @@
+[data-hai-app-pack="packito"] {
+  --packito-gap: 0.75rem;
+  display: grid;
+  gap: var(--packito-gap);
+}
+
+[data-hai-app-pack="packito"] [data-hai-stage] {
+  display: grid;
+  gap: 1rem;
+}
+
+.packito-stage-heading,
+.packito-controls,
+.packito-inspector,
+.packito-widget {
+  border: 1px solid currentColor;
+  border-radius: 0.65rem;
+  padding: 0.8rem;
+}
+
+.packito-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.packito-widget {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.packito-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.packito-badge {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.8rem;
+}
+
+.packito-micro {
+  display: grid;
+  grid-template-columns: auto minmax(8rem, 0.35fr) 1fr auto;
+  gap: 0.5rem;
+  align-items: start;
+}
+
+.packito-micro textarea {
+  width: 100%;
+  min-height: 4rem;
+}
+
+.packito-notification {
+  margin-block: 0.35rem;
+  padding: 0.45rem 0.65rem;
+  border-left: 0.3rem solid currentColor;
+}
+
+.packito-obfuscated,
+.packito-readonly {
+  opacity: 0.8;
+}
+
+[data-packito-inspector-summary] {
+  max-height: 12rem;
+}
+
+.packito-inspector pre,
+[data-packito-widget-runtime] pre,
+[data-packito-readonly-state] {
+  overflow: auto;
+  max-height: 30rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

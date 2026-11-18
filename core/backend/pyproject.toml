@@ -1,0 +1,28 @@
+# think-backend/pyproject.toml
+[tool.poetry]
+name        = "think-backend"
+version     = "0.2.0"
+description = "Core Thinkument session engine"
+authors     = ["Your Name <you@example.com>"]
+readme      = "README.md"
+license     = "MIT"
+packages    = [
+  { include = "__datomatonTM", from = "src" },
+  { include = "__exceptions", from = "src" },
+  { include = "__multiframespecTM", from = "src" },
+  { include = "_thinkengine", from = "src" },
+  { include = "_thinkprogram", from = "src" },
+  { include = "_thinksessions", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python               = "^3.10"
+jsonschema           = "^4.25.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.4"
+
+[build-system]
+requires      = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

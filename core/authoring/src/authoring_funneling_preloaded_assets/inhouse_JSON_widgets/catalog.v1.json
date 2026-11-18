@@ -1,0 +1,7 @@
+{
+  "kind": "inhouse_json_widget_catalog_v1",
+  "includes": [
+    "entries/crystal_ideator.v1.json",
+    "entries/metal_ideator.v1.json"
+  ]
+}

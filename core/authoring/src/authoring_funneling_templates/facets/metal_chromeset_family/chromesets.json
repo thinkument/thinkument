@@ -1,0 +1,8 @@
+{
+  "family_id": "metal",
+  "shared_widget_library": {"library_id": "metal.widget_library.v1", "catalog_fingerprint": "computed-from-trusted-family-sheets"},
+  "chromesets": [
+    {"chrome_id": "standard", "app_pack_id": "metal_standard", "browser_asset_root": "standard"},
+    {"chrome_id": "compact", "app_pack_id": "metal_compact", "browser_asset_root": "compact"}
+  ]
+}

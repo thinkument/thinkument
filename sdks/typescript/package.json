@@ -1,0 +1,24 @@
+{
+  "name": "@thinkument/sdk",
+  "version": "0.1.0",
+  "description": "Official Thinkument Client SDK for Node.js and TypeScript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/conformance.test.js"
+  },
+  "keywords": [
+    "thinkument",
+    "sdk",
+    "psmc",
+    "agents",
+    "sovereign-ai"
+  ],
+  "author": "Google DeepMind / Thinkument Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
+  }
+}

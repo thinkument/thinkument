@@ -1,0 +1,554 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Thinkument Coordination Engine API",
+    "version": "1.0.0",
+    "description": "Canonical OpenAPI 3.1 contract for Thinkument Local Studio (localhost:5052) and Sovereign Cloud (api.thinkument.com). Powers multi-language SDK code generation (Python, TypeScript, Go, Rust)."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5052",
+      "description": "Local Development Studio (Free, Offline, In-Memory)"
+    },
+    {
+      "url": "https://api.thinkument.com",
+      "description": "Thinkument Sovereign Cloud (Multi-User Concurrency & Scaled Celery)"
+    }
+  ],
+  "paths": {
+    "/healthz/": {
+      "get": {
+        "summary": "Health check",
+        "operationId": "getHealth",
+        "responses": {
+          "200": {
+            "description": "Service healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "service": { "type": "string" },
+                    "version": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sessions/": {
+      "post": {
+        "summary": "Create collaborative live session (P x SM x C)",
+        "operationId": "createSession",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SessionCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Session launched successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/LaunchResult" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sessions/{session_id}/": {
+      "get": {
+        "summary": "Fetch session state",
+        "operationId": "getSessionState",
+        "parameters": [
+          { "name": "session_id", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "role", "in": "query", "required": false, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Current rendered session state" }
+        }
+      },
+      "delete": {
+        "summary": "Close and delete session",
+        "operationId": "deleteSession",
+        "parameters": [
+          { "name": "session_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Session deleted" }
+        }
+      }
+    },
+    "/api/v1/sessions/{session_id}/dispatch/": {
+      "post": {
+        "summary": "Dispatch data or signal targeting current step widgets",
+        "operationId": "dispatchAction",
+        "parameters": [
+          { "name": "session_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DispatchRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Dispatch receipt",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DispatchReceipt" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sessions/{session_id}/events/": {
+      "get": {
+        "summary": "Query theta event window",
+        "operationId": "getEvents",
+        "parameters": [
+          { "name": "session_id", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "after_seq", "in": "query", "required": false, "schema": { "type": "integer" } },
+          { "name": "role", "in": "query", "required": false, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Theta event list or SSE event stream" }
+        }
+      }
+    },
+    "/api/v1/blackbox/run/": {
+      "post": {
+        "summary": "Execute autonomous headless run",
+        "operationId": "runBlackbox",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BlackboxRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Final state and output writes" }
+        }
+      }
+    },
+    "/api/v1/ops/execute/": {
+      "post": {
+        "summary": "Execute stateless vendor operation relay (Seam 2)",
+        "operationId": "executeOpsRelay",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/VendorInvocation" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vendor result",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/VendorResult" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ops/jobs/{job_id}/": {
+      "get": {
+        "summary": "Standardized promise-probing status endpoint for asynchronous jobs",
+        "operationId": "getOpsJobStatus",
+        "parameters": [
+          { "name": "job_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job status and execution outputs",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OpsJobStatusResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/wallet/balance/": {
+      "get": {
+        "summary": "Query wallet microcredit balance",
+        "operationId": "getWalletBalance",
+        "responses": {
+          "200": {
+            "description": "Wallet balance",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WalletBalance" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/modules/": {
+      "post": {
+        "summary": "Publish a Thinkument Module (think_module_v1: P x C)",
+        "operationId": "publishModule",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ModulePublishRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Module published",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ModuleRecord" }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List published modules",
+        "operationId": "listModules",
+        "responses": {
+          "200": {
+            "description": "List of modules",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ModuleSummary" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/modules/{module_id}/": {
+      "get": {
+        "summary": "Get published module detail and manifest",
+        "operationId": "getModuleDetail",
+        "parameters": [
+          { "name": "module_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Module detail",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ModuleRecord" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/modules/{module_id}/versions/{version}/retire/": {
+      "post": {
+        "summary": "Retire a published module version",
+        "operationId": "retireModuleVersion",
+        "parameters": [
+          { "name": "module_id", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "version", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retirement receipt",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/RetireReceipt" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/module-catalog/": {
+      "get": {
+        "summary": "Search and inspect community module marketplace",
+        "operationId": "getModuleCatalog",
+        "parameters": [
+          { "name": "search", "in": "query", "required": false, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Catalog results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ModuleSummary" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/analytics/runs/": {
+      "get": {
+        "summary": "List historical session run records",
+        "operationId": "listHistoricalRuns",
+        "parameters": [
+          { "name": "limit", "in": "query", "required": false, "schema": { "type": "integer", "default": 25 } }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of historical runs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/RunAnalytics" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/analytics/": {
+      "get": {
+        "summary": "Stream durable audit logs and epsilon messages",
+        "operationId": "getAuditMessages",
+        "parameters": [
+          { "name": "run_id", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "after_seq", "in": "query", "required": false, "schema": { "type": "integer", "default": 0 } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Audit messages stream",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "messages": {
+                      "type": "array",
+                      "items": { "type": "object" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/storage/upload/": {
+      "post": {
+        "summary": "Upload asset to Storagics S3 / Linode storage",
+        "operationId": "uploadStorageAsset",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/StorageUploadRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Storage descriptor",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/StorageDescriptor" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/storage/{ref}/": {
+      "get": {
+        "summary": "Resolve storage descriptor to authorized download URL",
+        "operationId": "resolveStorageAsset",
+        "parameters": [
+          { "name": "ref", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Asset download URL",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/StorageDescriptor" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SessionCreateRequest": {
+        "type": "object",
+        "required": ["P"],
+        "properties": {
+          "P": { "type": "object", "description": "ThinkProgram JSON manifest" },
+          "SM": { "type": "object", "description": "ThinkSession metadata (roles, funked config)" },
+          "C": { "type": "object", "description": "Context overrides (puppeteering symbols)" },
+          "roles": { "type": "object" },
+          "public_view_role": { "type": "string" },
+          "metadata": { "type": "object" }
+        }
+      },
+      "LaunchResult": {
+        "type": "object",
+        "properties": {
+          "kind": { "type": "string" },
+          "session_id": { "type": "string" },
+          "starter_id": { "type": "string" },
+          "public_view_role": { "type": "string" },
+          "selected": { "type": "object" },
+          "handles": { "type": "object" }
+        }
+      },
+      "DispatchRequest": {
+        "type": "object",
+        "properties": {
+          "action": { "type": "string", "default": "STEP" },
+          "user_fill": { "type": "object" },
+          "user_signal": { "type": "object" },
+          "role": { "type": "string" },
+          "cursor": { "type": "integer" }
+        }
+      },
+      "DispatchReceipt": {
+        "type": "object",
+        "properties": {
+          "ok": { "type": "boolean" },
+          "dispatch_outcome": { "type": "string" },
+          "session_id": { "type": "string" }
+        }
+      },
+      "BlackboxRequest": {
+        "type": "object",
+        "required": ["P"],
+        "properties": {
+          "P": { "type": "object" },
+          "C": { "type": "object" },
+          "SM": { "type": "object" },
+          "timeout_seconds": { "type": "integer", "default": 60 }
+        }
+      },
+      "VendorInvocation": {
+        "type": "object",
+        "required": ["operation", "args"],
+        "properties": {
+          "operation": { "type": "string" },
+          "modality": { "type": "string", "default": "general" },
+          "args": { "type": "object" },
+          "call_key": { "type": "string" }
+        }
+      },
+      "VendorResult": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "usage": { "type": "object" }
+        }
+      },
+      "OpsJobStatusResponse": {
+        "type": "object",
+        "properties": {
+          "job_id": { "type": "string" },
+          "status": { "type": "string" },
+          "progress": { "type": "object" },
+          "result": { "type": "object" },
+          "program": { "type": "object" },
+          "outputs": { "type": "object" },
+          "error": { "type": "string" }
+        }
+      },
+      "WalletBalance": {
+        "type": "object",
+        "properties": {
+          "available_credits": { "type": "integer" },
+          "currency": { "type": "string", "default": "microcredits" }
+        }
+      },
+      "ModulePublishRequest": {
+        "type": "object",
+        "required": ["manifest"],
+        "properties": {
+          "manifest": { "type": "object", "description": "think_module_v1 manifest" },
+          "authoring_template_version": { "type": "string", "default": "v1" }
+        }
+      },
+      "ModuleRecord": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "version_id": { "type": "string" },
+          "status": { "type": "string" },
+          "source_manifest": { "type": "object" },
+          "fingerprint": { "type": "string" }
+        }
+      },
+      "ModuleSummary": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "version": { "type": "string" },
+          "title": { "type": "string" },
+          "status": { "type": "string" }
+        }
+      },
+      "RetireReceipt": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string" },
+          "retired_at": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      },
+      "RunAnalytics": {
+        "type": "object",
+        "properties": {
+          "run_id": { "type": "string" },
+          "kind": { "type": "string" },
+          "created_at": { "type": "string" },
+          "status": { "type": "string" }
+        }
+      },
+      "StorageUploadRequest": {
+        "type": "object",
+        "required": ["content"],
+        "properties": {
+          "content": { "type": "string", "description": "Base64 or UTF-8 text payload" },
+          "filename": { "type": "string" }
+        }
+      },
+      "StorageDescriptor": {
+        "type": "object",
+        "properties": {
+          "ref": { "type": "string" },
+          "url": { "type": "string" },
+          "filename": { "type": "string" }
+        }
+      }
+    }
+  }
+}

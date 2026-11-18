@@ -1,0 +1,17 @@
+{
+  "kind": "managed_json_widget_v1",
+  "source_key": "inhouse:metal.json_ideator",
+  "manifest_resource": {
+    "package": "authoring_funneling.examples.metal.shared_widgets",
+    "path": "json_widgets/metal_ideator.json"
+  },
+  "metadata": {
+    "schema_version": "v1",
+    "document": {
+      "title": "Metal JSON Ideator",
+      "description": "A first-party JSON widget example from the Metal app pack.",
+      "tags": ["in-house", "metal", "json-widget"],
+      "icon": ""
+    }
+  }
+}

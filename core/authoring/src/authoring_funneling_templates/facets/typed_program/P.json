@@ -1,0 +1,14 @@
+{
+  "kind": "think_program_v1",
+  "surface_version": "v1",
+  "symbols": {},
+  "puppeteering": {},
+  "run": {
+    "program": {
+      "info": {"id": "public_template", "title": "Public template"},
+      "widgets": {"seed": {"widget": "metal.seed", "args": {"title": "Draft", "count": 1}, "bindings": {}}},
+      "flow": [{"id": "start", "widgets": ["seed"]}]
+    },
+    "config": {}
+  }
+}

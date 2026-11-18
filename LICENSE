@@ -1,0 +1,10 @@
+Thinkument Open-Core Dual License Structure
+
+1. Core Engine and Developer CLI (`core/app/`, `cli/`):
+   Licensed under the Functional Source License (FSL-1.1-Apache-2.0).
+   Converts automatically to Apache 2.0 two years after each release.
+
+2. Client SDKs and Contracts (`sdks/`, `spec/`, `core/backend/`, `tooling/`):
+   Licensed under the Apache License, Version 2.0.
+
+Refer to individual package directories for specific license headers.

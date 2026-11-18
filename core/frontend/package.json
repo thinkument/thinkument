@@ -1,0 +1,15 @@
+{
+  "name": "thinkument-frontend",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.15.0"
+  },
+  "scripts": {
+    "test": "node --import ./tests-js/_aggregate_static_imports.mjs --test tests-js/thinkument-js/*.test.js",
+    "install:dry-run-browser": "playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "1.64.0"
+  }
+}

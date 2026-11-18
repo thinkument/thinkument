@@ -1,0 +1,16 @@
+{
+  "kind": "think_program_v1",
+  "surface_version": "v1",
+  "symbols": {},
+  "puppeteering": {},
+  "run": {
+    "program": {
+      "info": {"id": "metal_public_example", "title": "Idea review"},
+      "widgets": {
+        "idea": {"widget": "metal.json_ideator", "args": {}, "bindings": {}}
+      },
+      "flow": [{"id": "draft", "widgets": ["idea"]}]
+    },
+    "config": {}
+  }
+}

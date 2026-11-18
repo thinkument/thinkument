@@ -1,0 +1,54 @@
+[data-thinkument-hai] {
+  box-sizing: border-box;
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 72rem;
+  padding: 1rem;
+}
+
+[data-hai-widgets] {
+  display: grid;
+  gap: 1rem;
+}
+
+.hai-widget {
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.hai-widget-obfuscated,
+.hai-widget-readonly {
+  opacity: 0.75;
+}
+
+.hai-micro {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.75rem 0;
+}
+
+.hai-micro textarea,
+[data-hai-exact-action],
+[data-hai-signal-info] {
+  min-height: 4rem;
+  width: 100%;
+}
+
+[data-hai-history] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+[data-hai-global-notifications] {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.hai-notification,
+.hai-widget-notification {
+  border-left: 0.25rem solid currentColor;
+  padding: 0.35rem 0.65rem;
+}

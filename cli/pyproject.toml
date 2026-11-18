@@ -1,0 +1,31 @@
+# thinkument/thinkument-cli/pyproject.toml
+[tool.poetry]
+name = "thinkument-cli"
+version = "0.1.0"
+description = "Thinkument CLI & Developer SDK: Offline Studio, Local Daemon, and Sovereign Cloud Client"
+authors = ["Thinkument Team <team@thinkument.com>"]
+readme = "README.md"
+license = "MIT"
+packages = [
+  { include = "thinkument", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.1.0"
+requests = "^2.32.0"
+think-app = { path = "../../framework/think-app", develop = true }
+think-app-authoring = { path = "../../framework/think-app-authoring", develop = true }
+think-backend = { path = "../../framework/think-backend", develop = true }
+think-frontend = { path = "../../framework/think-frontend", develop = true }
+independent-tooling = { path = "../../../independent-tooling", develop = true }
+
+[tool.poetry.scripts]
+thinkument = "thinkument.cli:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

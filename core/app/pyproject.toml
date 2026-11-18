@@ -1,0 +1,64 @@
+# think-app/pyproject.toml
+
+[tool.poetry]
+name        = "think-app"
+version     = "0.1.0"
+description = "Reusable Thinkument ioops and callbacks for AI interaction scenarios"
+authors     = ["Your Name <you@example.com>"]
+readme      = "README.md"
+license     = "MIT"
+
+packages = [
+  { include = "bootstrap_higher_app", from = "src" },
+  { include = "ways_to_run", from = "src" },
+  { include = "epsilinesTM_serveragnostic", from = "src" },
+  { include = "ways_to_create", from = "src" },
+]
+
+include = [
+  { path = "src/ways_to_create/app_packs_examples/about.MD", format = ["sdist", "wheel"] },
+  { path = "src/ways_to_create/app_packs_examples/*/js/**", format = ["sdist", "wheel"] },
+  { path = "src/ways_to_create/app_pack_mould/js/**", format = ["sdist", "wheel"] },
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+# Browser/runtime surfaces owned by think-app.
+playwright = "^1.55.0"
+flask = "^3.1.0"
+requests = "^2.32.0"
+
+# Central Thinkument install graph.
+#
+# Higher hosts depend on think-app and receive this complete product base
+# transitively. Adjacent packages own their own Python/static/runtime metadata;
+# the app owns only the decision that they belong in the composed base.
+think-backend = { path = "../think-backend", develop = true }
+think-frontend = { path = "../think-frontend", develop = true }
+independent-tooling = { path = "../../../independent-tooling", develop = true }
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.4"
+pytest-asyncio = "^1.1.0"
+wallet-credits = { path = "../../../financial-core/wallet-credits", develop = true }
+
+
+[tool.poetry.plugins."thinkument.static_roots.v1"]
+think_hai = "ways_to_create.app_pack_mould.static_assets:thinkument_static_roots_v1"
+
+[tool.poetry.plugins."thinkument.browser_boot_config.v1"]
+think_hai = "ways_to_create.app_pack_mould.runtime:browser_boot_config_v1"
+
+[tool.poetry.plugins."thinkument.runtime_contributors.v1"]
+think_hai = "ways_to_create.app_pack_mould.runtime:activate_app_pack_mould_v1"
+
+[tool.poetry.plugins."thinkument.app_packs_examples.v1"]
+example_notes = "ways_to_create.app_packs_examples.example_notes.declare_pack:app_pack_manifest_v1"
+
+
+[build-system]
+requires      = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

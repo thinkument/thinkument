@@ -1,0 +1,27 @@
+# zz-new-pip-pkg/pyproject.toml
+[tool.poetry]
+name        = "independent-tooling"
+version     = "0.1.0"
+description = "blah"
+authors     = ["Your Name <you@example.com>"]
+readme      = "README.md"
+license     = "MIT"
+packages    = [
+  { include = "serviceCredsTM", from = "src" },
+  { include = "DOMScriptrTM", from = "src" },
+  { include = "bindings2bindingsTM", from = "src" },
+  { include = "JSONfnchainTM", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python          = "^3.10"
+playwright      = "^1.55.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.4"
+build = "^1.2.0"
+poetry-core = ">=1.9.0"
+
+[build-system]
+requires      = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

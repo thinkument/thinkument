@@ -1,0 +1,17 @@
+{
+  "kind": "json_widget_v1",
+  "name": "example.custom_operation_widget",
+  "declaration": {
+    "inputs": {},
+    "outputs": {"result": {"text": "str"}},
+    "args": {}
+  },
+  "signals": {
+    "mount": {
+      "steps": [{"id": "decorate", "fn": "example.text.add_period", "args": {"text": "Ready"}}],
+      "outputs": {"result": "$decorate"},
+      "done": true
+    },
+    "fill": {"done": true, "keep": "*"}
+  }
+}

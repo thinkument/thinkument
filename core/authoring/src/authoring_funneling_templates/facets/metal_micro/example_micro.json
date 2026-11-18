@@ -1,0 +1,1 @@
+{"name":"score","type":"creativity_bounded_integer","label":"Score","minimum":0,"maximum":100,"value":42}

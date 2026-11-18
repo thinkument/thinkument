@@ -1,0 +1,17 @@
+{
+  "kind": "managed_json_widget_v1",
+  "source_key": "inhouse:crystal.json_ideator",
+  "manifest_resource": {
+    "package": "authoring_funneling.examples.crystal",
+    "path": "json_widgets/crystal_ideator.json"
+  },
+  "metadata": {
+    "schema_version": "v1",
+    "document": {
+      "title": "Crystal JSON Ideator",
+      "description": "A first-party JSON widget example from the Crystal app pack.",
+      "tags": ["in-house", "crystal", "json-widget"],
+      "icon": ""
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "catalog_id": "thinkument.authoring_funneling_templates.v1",
+  "version": 1,
+  "templates": [
+    {
+      "id": "metal_typed_json_widget_v1",
+      "version": 1,
+      "title": "Metal typed program with a public JSON widget",
+      "description": "A complete W/P/SM/C composition over the shared Metal library.",
+      "facets": ["internal_py_widget_v1", "public_json_widget_v1", "typed_program_v1", "session_metadata_v1", "metal_micro_v1", "metal_chromeset_family_v1"],
+      "artifacts": {
+        "P": "examples/metal_typed_json_widget/P.json",
+        "SM": "examples/metal_typed_json_widget/SM.json",
+        "C": "examples/metal_typed_json_widget/C.json",
+        "widget": "examples/metal_typed_json_widget/widget.json"
+      },
+      "shared_widget_library": {"id": "metal.widget_library.v1", "catalog_fingerprint": "bdc688f27e40ad0a9558a13133c5ad51832d41ca3147e09afb194e493e33bc8b"},
+      "chromesets": [
+        {"app_pack_id": "metal_standard", "chrome_id": "standard", "browser_asset_root": "standard"},
+        {"app_pack_id": "metal_compact", "chrome_id": "compact", "browser_asset_root": "compact"}
+      ],
+      "runtime_bundle_ids": ["metal.widget_library.v1", "metal.micro_library.v1"],
+      "validation_surfaces": ["json_widget_v1", "typed_think_program_v1", "SM", "C", "metal_micro_catalogue_v1", "metal_chromesets_v1"]
+    },
+    {
+      "id": "internal_py_widget_v1", "version": 1, "title": "Trusted Python widget facet",
+      "description": "A copyable strict lifecycle pattern for package-maintainer Python widgets.",
+      "artifacts": {"python": "facets/internal_py_widget/template_internal_py_widget.py"},
+      "runtime_bundle_ids": [], "validation_surfaces": ["strict_widget_v1"]
+    },
+    {
+      "id": "public_json_widget_v1", "version": 1, "title": "Public JSON widget facet",
+      "description": "A declarative lifecycle over the approved operation vocabulary and admitted micros.",
+      "artifacts": {"widget": "facets/public_json_widget/manifest.json"},
+      "runtime_bundle_ids": [], "validation_surfaces": ["json_widget_v1", "approved_operations_v1"]
+    },
+    {
+      "id": "custom_operation_v1", "version": 1, "title": "Custom Python operation facet",
+      "description": "A host-owned, typed and versioned JSONfnchainTM operation added to Funnel C's vocabulary.",
+      "artifacts": {"python": "facets/custom_operation/custom_operation.py", "widget": "facets/custom_operation/widget.json"},
+      "runtime_bundle_ids": [], "validation_surfaces": ["python_syntax_v1", "json_widget_v1", "operation_vocabulary_v1"]
+    },
+    {
+      "id": "typed_program_v1", "version": 1, "title": "Typed P and C facets",
+      "description": "Typed widget bindings lowered into the ordinary Thinkument program language.",
+      "artifacts": {"P": "facets/typed_program/P.json", "C": "facets/typed_program/C.json"},
+      "runtime_bundle_ids": [], "validation_surfaces": ["typed_think_program_v1", "initial_overrides_v1"]
+    },
+    {
+      "id": "session_metadata_v1", "version": 1, "title": "Session metadata facets",
+      "description": "System, roles, chain-reaction/Funk, and app-pack selection examples.",
+      "artifacts": {"system": "facets/session_metadata/system.json", "roles": "facets/session_metadata/roles.json", "chainreaction_funk": "facets/session_metadata/chainreaction_funk.json", "app_pack": "facets/session_metadata/app_pack.json", "paquete_aesthetics": "facets/session_metadata/paquete_aesthetics.json"},
+      "runtime_bundle_ids": [], "validation_surfaces": ["framework_session_metadata_v1", "metal_aesthetics_v1"]
+    },
+    {
+      "id": "metal_micro_v1", "version": 1, "title": "Metal micro facet",
+      "description": "A trusted backend micro definition and admitted browser renderer mapping.",
+      "artifacts": {"definition": "facets/metal_micro/template_micro_definition.py", "table": "facets/metal_micro/template_micro_table.py", "renderer": "facets/metal_micro/template_micro_renderer.js", "example": "facets/metal_micro/example_micro.json"},
+      "runtime_bundle_ids": ["metal.micro_library.v1"], "validation_surfaces": ["micro_definition_v1", "micro_ownership_v1", "trusted_renderer_v1"]
+    },
+    {
+      "id": "metal_chromeset_family_v1", "version": 1, "title": "Metal K-chromeset family facet",
+      "description": "K distinct app-pack publications referencing one shared W/micro library.",
+      "artifacts": {"chromesets": "facets/metal_chromeset_family/chromesets.json", "index": "facets/metal_chromeset_family/index.js", "aesthetics": "facets/metal_chromeset_family/aesthetics.js", "styles": "facets/metal_chromeset_family/styles.css"},
+      "shared_widget_library": {"id": "metal.widget_library.v1", "catalog_fingerprint": "bdc688f27e40ad0a9558a13133c5ad51832d41ca3147e09afb194e493e33bc8b"},
+      "chromesets": [
+        {"app_pack_id": "metal_standard", "chrome_id": "standard", "browser_asset_root": "standard"},
+        {"app_pack_id": "metal_compact", "chrome_id": "compact", "browser_asset_root": "compact"}
+      ],
+      "runtime_bundle_ids": ["metal.widget_library.v1", "metal.micro_library.v1"], "validation_surfaces": ["metal_chromesets_v1", "shared_widget_library_v1"]
+    },
+    {
+      "id": "crystal_direct_pack_v1", "version": 1, "title": "Crystal direct single-pack example",
+      "description": "A single app-pack publication without chromeset generation.",
+      "artifacts": {}, "shared_widget_library": {"id": "crystal.widget_library.v1", "catalog_fingerprint": "8caea5320559a374c8d8b09cc25078457dbcd849ad7cec8a150402425cc579fd"},
+      "chromesets": [{"app_pack_id": "crystal", "chrome_id": "crystal", "browser_asset_root": "rendering"}],
+      "runtime_bundle_ids": ["crystal.widget_library.v1"], "validation_surfaces": ["typed_think_program_v1"]
+    }
+  ]
+}

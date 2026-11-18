@@ -1,0 +1,5 @@
+@import url('../metal_standard/styles.css');
+[data-chrome="compact"] { color: #25372a; background: #eef4ed; padding: .5rem; font: 14px/1.3 system-ui; }
+[data-chrome="compact"] .chromed-widget { border-left: 4px solid #477650; padding: .6rem; margin: .4rem 0; background: white; }
+[data-chrome="compact"] .chromed-micro { margin: .3rem 0; }
+[data-chrome="compact"] .chromed-control { padding: .25rem; }
