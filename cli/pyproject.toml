@@ -25,6 +25,7 @@ thinkument = "thinkument.cli:main"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "8.3.4"
+twine = ">=5.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
